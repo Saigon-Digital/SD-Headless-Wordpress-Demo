@@ -1,12 +1,14 @@
 import React from "react";
 import dynamic from "next/dynamic";
 
-import { Hero } from "../components/Hero";
-import {PrimaryFeatures} from '../components/PrimaryFeatures' 
-import {CallToAction} from '../components/CallToAction'
+import { Hero } from "./Hero";
+import {PrimaryFeatures} from './PrimaryFeatures' 
+import {CallToAction} from './CallToAction'
+import {TextBlock} from './TextBlock'
 // export blocks
 export default {
   HeroLayout: Hero,
   FeaturesHighlightLayout:PrimaryFeatures,
-  CtaBannerLayout:CallToAction
+  CtaBannerLayout:CallToAction,
+  TextBlockLayout:TextBlock
 };
