@@ -1,35 +1,42 @@
-import { Footer, Header } from '@/components';
-import { componentsFragment, dynamicBlocks } from '@/fragments/Components';
-import BlocksViewer from '@/functions/BlocksViewer';
-import { gql } from '@apollo/client';
-
+import { Footer, Header, SEO } from '@/components'
+import { componentsFragment, dynamicBlocks } from '@/fragments/Components'
+import BlocksViewer from '@/functions/BlocksViewer'
+import { gql } from '@apollo/client'
 
 export default function Component(props) {
+  const { title, description, canonicalUrl, socialGraphImage } =
+    props?.data?.page?.pageSettings
+  const pageTitle = props.data.page.title
   // Loading state for previews
   if (props.loading) {
-    return <>Loading...</>;
+    return <>Loading...</>
   }
 
-  const { dynamicBlocks } = props.data?.page?.pageBuilder;
+  const { dynamicBlocks } = props.data?.page?.pageBuilder
 
   return (
     <>
-      <Header
+      <SEO
+        title={title || pageTitle}
+        description={description || null}
+        url={canonicalUrl || null}
+        imageUrl={socialGraphImage?.node?.sourceUrl || null}
       />
-       <main>
+      <Header />
+      <main>
         <BlocksViewer blocks={dynamicBlocks} />
       </main>
       <Footer />
     </>
-  );
+  )
 }
 
 Component.variables = ({ databaseId }, ctx) => {
   return {
     databaseId,
     asPreview: ctx?.asPreview,
-  };
-};
+  }
+}
 
 Component.query = gql`
 ${componentsFragment}
@@ -39,7 +46,16 @@ ${componentsFragment}
   ) {
     page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
       title
-      title
+      pageSettings {
+        canonicalUrl
+        description
+        title
+        socialGraphImage {
+          node {
+            sourceUrl
+          }
+        }
+      }
       pageBuilder {
         fieldGroupName
         dynamicBlocks{
@@ -48,4 +64,4 @@ ${componentsFragment}
       }
     }
   }
-`;
+`

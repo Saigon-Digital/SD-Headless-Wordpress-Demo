@@ -1,4 +1,6 @@
-import Head from 'next/head';
+import Head from "next/head";
+import { useRouter } from "next/router";
+import siteConfigData from "../../data/preBuild/siteConfig.json";
 
 /**
  * Provide SEO related meta tags to a page.
@@ -12,9 +14,23 @@ import Head from 'next/head';
  * @returns {React.ReactElement} The SEO component
  */
 export default function SEO({ title, description, imageUrl, url }) {
-  if (!title && !description && !imageUrl && !url) {
-    return null;
-  }
+  const router = useRouter();
+  const siteConfiguration = siteConfigData.data.siteSettings.siteConfiguration;
+  const favicon = siteConfiguration?.favicon?.node?.sourceUrl;
+
+  const canonicalUrl = url
+    ? `${url}${router?.asPath}`
+    : siteConfiguration
+    ? `${siteConfiguration?.siteUrl}${router?.asPath}`
+    : null;
+
+  const seo = {
+    title: `${title || siteConfiguration?.title}`,
+    description: description || siteConfiguration?.description,
+    image: imageUrl || siteConfiguration.openGraphImage.node.sourceUrl,
+    seoCanonical: canonicalUrl,
+    url: url,
+  };
 
   return (
     <>
@@ -22,36 +38,55 @@ export default function SEO({ title, description, imageUrl, url }) {
         <meta property="og:type" content="website" />
         <meta property="twitter:card" content="summary_large_image" />
 
-        {title && (
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href={favicon || "/images/apple-touch-icon.png"}
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href={favicon || "/images/apple-touch-icon.png"}
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href={favicon || "/images/apple-touch-icon.png"}
+        />
+
+        {seo.title && (
           <>
-            <title>{title}</title>
-            <meta name="title" content={title} />
-            <meta property="og:title" content={title} />
-            <meta property="twitter:title" content={title} />
+            <title>{seo.title}</title>
+            <meta name="title" content={seo.title} />
+            <meta property="og:title" content={seo.title} />
+            <meta property="twitter:title" content={seo.title} />
           </>
         )}
 
-        {description && (
+        {seo.description && (
           <>
-            <meta name="description" content={description} />
-            <meta property="og:description" content={description} />
-            <meta property="twitter:description" content={description} />
+            <meta name="description" content={seo.description} />
+            <meta property="og:description" content={seo.description} />
+            <meta property="twitter:description" content={seo.description} />
           </>
         )}
 
-        {imageUrl && (
+        {seo.image && (
           <>
-            <meta property="og:image" content={imageUrl} />
-            <meta property="twitter:image" content={imageUrl} />
+            <meta property="og:image" content={seo.image} />
+            <meta property="twitter:image" content={seo.image} />
           </>
         )}
 
-        {url && (
+        {seo.url && (
           <>
-            <meta property="og:url" content={url} />
-            <meta property="twitter:url" content={url} />
+            <meta property="og:url" content={seo.url} />
+            <meta property="twitter:url" content={seo.url} />
           </>
         )}
+        {seo.seoCanonical && <link rel="canonical" href={seo.seoCanonical} />}
       </Head>
     </>
   );

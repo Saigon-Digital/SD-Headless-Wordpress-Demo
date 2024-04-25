@@ -4,7 +4,9 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "faust dev",
+    "predev": "node functions/preBuildDev.js",
     "build": "faust build",
+    "prebuild": "node functions/preBuildDev.js",
     "generate": "faust generatePossibleTypes",
     "stylesheet": "faust generateGlobalStylesheet",
     "start": "faust start"

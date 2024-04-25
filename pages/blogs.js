@@ -1,3 +1,4 @@
+import { SEO } from '@/components';
 import { Footer, Headers } from '@/components/Footer'
 import {  Header } from '@/components/Header'
 import { gql } from '@apollo/client'
@@ -9,6 +10,7 @@ import React from 'react'
   export default function Blogs({postsData, loading}) {
     return (
         <>
+        <SEO/>
         <Header/>
       <div className="bg-white py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">

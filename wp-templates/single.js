@@ -30,6 +30,22 @@ const GET_POST_QUERY = gql`
       title
       content
       date
+      pageSettings {
+        canonicalUrl
+        description
+        title
+        socialGraphImage {
+          node {
+            sourceUrl
+          }
+        }
+      }
+      featuredImage {
+        node {
+          sourceUrl
+          date
+        }
+      }
       author {
         node {
           name
@@ -47,19 +63,20 @@ export default function Component(props) {
   }
 
   const { post } = useFaustQuery(GET_POST_QUERY);
-  const { generalSettings } =
-    useFaustQuery(GET_LAYOUT_QUERY);
-
-  const { title: siteTitle, description: siteDescription } = generalSettings;
+    const { seoTitle, description, canonicalUrl, socialGraphImage } =
+    post?.pageSettings;
  
   const { title, content, featuredImage, date, author } = post ?? {};
 
   return (
     <>
-      <SEO
-        title={siteTitle}
-        description={siteDescription}
-        imageUrl={featuredImage?.node?.sourceUrl}
+       <SEO
+        title={seoTitle || title}
+        description={description}
+        imageUrl={
+          featuredImage?.node?.sourceUrl || socialGraphImage?.node?.sourceUrl 
+        }
+        url={canonicalUrl || null}
       />
       <Header
       />
