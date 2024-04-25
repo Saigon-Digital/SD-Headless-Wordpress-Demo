@@ -13,7 +13,7 @@ import siteConfigData from "../../data/preBuild/siteConfig.json";
  *
  * @returns {React.ReactElement} The SEO component
  */
-export default function SEO({ title, description, imageUrl, url }) {
+export default function SEO({ title, description, imageUrl, url, noIndex }) {
   const router = useRouter();
   const siteConfiguration = siteConfigData.data.siteSettings.siteConfiguration;
   const favicon = siteConfiguration?.favicon?.node?.sourceUrl;
@@ -86,7 +86,9 @@ export default function SEO({ title, description, imageUrl, url }) {
             <meta property="twitter:url" content={seo.url} />
           </>
         )}
+        {noIndex && <meta name="robots" content="noindex, nofollow"/>}
         {seo.seoCanonical && <link rel="canonical" href={seo.seoCanonical} />}
+        
       </Head>
     </>
   );

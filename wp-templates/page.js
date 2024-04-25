@@ -2,9 +2,10 @@ import { Footer, Header, SEO } from '@/components'
 import { componentsFragment, dynamicBlocks } from '@/fragments/Components'
 import BlocksViewer from '@/functions/BlocksViewer'
 import { gql } from '@apollo/client'
+import Script from 'next/script'
 
 export default function Component(props) {
-  const { title, description, canonicalUrl, socialGraphImage } =
+  const { title, description, canonicalUrl, socialGraphImage, noIndex, script } =
     props?.data?.page?.pageSettings
   const pageTitle = props.data.page.title
   // Loading state for previews
@@ -21,7 +22,11 @@ export default function Component(props) {
         description={description || null}
         url={canonicalUrl || null}
         imageUrl={socialGraphImage?.node?.sourceUrl || null}
+        noIndex={noIndex}
       />
+       <Script id="page-script">
+        {`${script}`}
+      </Script>
       <Header />
       <main>
         <BlocksViewer blocks={dynamicBlocks} />
@@ -50,6 +55,8 @@ ${componentsFragment}
         canonicalUrl
         description
         title
+        script
+        noIndex
         socialGraphImage {
           node {
             sourceUrl
