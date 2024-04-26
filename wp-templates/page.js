@@ -5,6 +5,10 @@ import { gql } from '@apollo/client'
 import Script from 'next/script'
 
 export default function Component(props) {
+  // Loading state for previews
+  if (props.loading) {
+    return <>Loading...</>
+  }
   const title = props?.data?.page?.pageSettings?.title || ""
   const description = props?.data?.page?.pageSettings?.description || ""
   const canonicalUrl = props?.data?.page?.pageSettings?.canonicalUrl || ""
@@ -12,12 +16,8 @@ export default function Component(props) {
   const noIndex = props?.data?.page?.pageSettings?.noIndex || false
   const script = props?.data?.page?.pageSettings?.script || ""
   const pageTitle = props?.data?.page?.title || ''
+  const dynamicBlocks = props?.data?.page?.pageBuilder?.dynamicBlocks || []
 
-  const { dynamicBlocks } = props.data?.page?.pageBuilder
-  // Loading state for previews
-  if (props.loading) {
-    return <>Loading...</>
-  }
   return (
     <>
       <SEO

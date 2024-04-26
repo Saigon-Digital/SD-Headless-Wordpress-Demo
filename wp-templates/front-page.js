@@ -7,19 +7,18 @@ import { SEO } from '@/components'
 import Script from 'next/script'
 
 export default function Component(props) {
-  const { dynamicBlocks } = props?.data?.page?.pageBuilder || []
- 
+  if (props.loading) {
+    return <>Loading...</>
+  }
+  const dynamicBlocks = props?.data?.page?.pageBuilder?.dynamicBlocks || []
   const title = props?.data?.page?.pageSettings?.title || ""
   const description = props?.data?.page?.pageSettings?.description || ""
   const canonicalUrl = props?.data?.page?.pageSettings?.canonicalUrl || ""
   const socialGraphImage = props?.data?.page?.pageSettings?.socialGraphImage 
   const noIndex = props?.data?.page?.pageSettings?.noIndex || false
   const script = props?.data?.page?.pageSettings?.script || ""
-
   const pageTitle = props?.data?.page?.title || ''
-  if (props.loading) {
-    return <>Loading...</>
-  }
+  
   return (
     <>
       <SEO
