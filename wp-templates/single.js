@@ -64,7 +64,7 @@ export default function Component(props) {
 
   const { post } = useFaustQuery(GET_POST_QUERY);
     const { seoTitle, description, canonicalUrl, socialGraphImage } =
-    post?.pageSettings;
+    post?.pageSettings ?? {};
  
   const { title, content, featuredImage, date, author } = post ?? {};
 

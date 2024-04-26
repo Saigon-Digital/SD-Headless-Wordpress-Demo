@@ -5,16 +5,19 @@ import { gql } from '@apollo/client'
 import Script from 'next/script'
 
 export default function Component(props) {
-  const { title, description, canonicalUrl, socialGraphImage, noIndex, script } =
-    props?.data?.page?.pageSettings
-  const pageTitle = props.data.page.title
+  const title = props?.data?.page?.pageSettings?.title || ""
+  const description = props?.data?.page?.pageSettings?.description || ""
+  const canonicalUrl = props?.data?.page?.pageSettings?.canonicalUrl || ""
+  const socialGraphImage = props?.data?.page?.pageSettings?.socialGraphImage 
+  const noIndex = props?.data?.page?.pageSettings?.noIndex || false
+  const script = props?.data?.page?.pageSettings?.script || ""
+  const pageTitle = props?.data?.page?.title || ''
+
+  const { dynamicBlocks } = props.data?.page?.pageBuilder
   // Loading state for previews
   if (props.loading) {
     return <>Loading...</>
   }
-
-  const { dynamicBlocks } = props.data?.page?.pageBuilder
-
   return (
     <>
       <SEO
@@ -24,9 +27,7 @@ export default function Component(props) {
         imageUrl={socialGraphImage?.node?.sourceUrl || null}
         noIndex={noIndex}
       />
-       <Script id="page-script">
-        {`${script}`}
-      </Script>
+      <Script id="page-script">{`${script}`}</Script>
       <Header />
       <main>
         <BlocksViewer blocks={dynamicBlocks} />
