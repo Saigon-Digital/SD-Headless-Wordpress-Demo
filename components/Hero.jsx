@@ -71,7 +71,7 @@ Hero.fragments = {
   entry: gql`
     fragment HeroBlocksFragment on PageBuilderDynamicBlocksHeroLayout {
       __typename
-      title: hero
+          title
           description
           images {
             image {
