@@ -93,7 +93,7 @@ function MobileNavigation() {
 
 export function Header() {
   return (
-    <header className="py-10">
+    <header className="py-10 bg-green-400">
       <Container>
         <nav className="relative z-50 flex justify-between">
           <div className="flex items-center md:gap-x-12">
@@ -101,6 +101,7 @@ export function Header() {
               <Logo className="h-10 w-[160px]" />
             </Link>
             <div className="hidden md:flex md:gap-x-6">
+            <NavLink href="https://saigon.digital/services/" >Testing - New Navigation</NavLink>
               <NavLink href="https://saigon.digital/services/" >Features</NavLink>
               <NavLink href="https://saigon.digital/contact/" >Contact</NavLink>
             </div>
