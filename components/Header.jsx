@@ -101,6 +101,7 @@ export function Header() {
               <Logo className="h-10 w-[160px]" />
             </Link>
             <div className="hidden md:flex md:gap-x-6">
+            <NavLink href="/">Home</NavLink>
               <NavLink href="https://saigon.digital/services/" >Features</NavLink>
               <NavLink href="https://saigon.digital/contact/" >Contact</NavLink>
             </div>
