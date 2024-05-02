@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import siteConfigData from "../../data/preBuild/siteConfig.json";
+// import siteConfigData from "../../data/preBuild/siteConfig.json";
+import siteConfigData from '@/data/preBuild/siteConfig.json'
 
 /**
  * Provide SEO related meta tags to a page.

@@ -1,5 +1,5 @@
-import {PostInfo } from '.'
 import FeaturedImage from '@/components/FeaturedImage'
+import PostInfo from './PostInfo'
 export default function EntryHeader({ title, image, date, author, className }) {
   const hasText = title || date || author
 

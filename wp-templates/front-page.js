@@ -3,7 +3,7 @@ import { componentsFragment, dynamicBlocks } from '../fragments/Components'
 import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
 import BlocksViewer from '../functions/BlocksViewer'
-import { SEO } from '@/components'
+import  SEO  from '@/components/SEO'
 import Script from 'next/script'
 
 export default function Component(props) {

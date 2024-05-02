@@ -1,5 +1,4 @@
-import { FormatDate } from '..';
-
+import FormatDate from "@/components/FormatDate";
 export default function PostInfo({ date, author, className }) {
   if (!date && !author) {
     return null;

@@ -1,20 +1,18 @@
 import { gql } from '@apollo/client'
 import { useFaustQuery } from '@faustwp/core'
 import EntryHeader from '../components/EntryHeader'
-import {
-  Footer,
-  Header,
-  Main,
-  SEO,
-} from '../components'
+import { Header } from '@/components/Header'
+import { Footer } from '@/components/Footer'
+import SEO from '@/components/SEO'
+import Main from '@/components/Main'
 import FeaturedImage from '@/components/FeaturedImage'
-import * as MENUS from '../constants/menus'
-import { BlogInfoFragment } from '../fragments/GeneralSettings'
+
 const GET_LAYOUT_QUERY = gql`
-  ${BlogInfoFragment}
+  
   query GetLayout {
     generalSettings {
-      ...BlogInfoFragment
+      title
+      description
     }
   }
 `
@@ -99,8 +97,8 @@ Component.queries = [
   {
     query: GET_LAYOUT_QUERY,
     variables: (seedNode, ctx) => ({
-      headerLocation: MENUS.PRIMARY_LOCATION,
-      footerLocation: MENUS.FOOTER_LOCATION,
+      headerLocation: "PRIMARY",
+      footerLocation: "FOOTER",
     }),
   },
   {

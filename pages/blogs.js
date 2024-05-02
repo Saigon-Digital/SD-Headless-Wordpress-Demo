@@ -1,4 +1,4 @@
-import { SEO } from '@/components';
+import  SEO  from '@/components/SEO';
 import { Footer, Headers } from '@/components/Footer'
 import {  Header } from '@/components/Header'
 import { gql } from '@apollo/client'

@@ -1,4 +1,6 @@
-import { Footer, Header, SEO } from '@/components'
+import { Header } from '@/components/Header'
+import { Footer } from '@/components/Footer'
+import SEO from '@/components/SEO'
 import { componentsFragment, dynamicBlocks } from '@/fragments/Components'
 import BlocksViewer from '@/functions/BlocksViewer'
 import { gql } from '@apollo/client'
