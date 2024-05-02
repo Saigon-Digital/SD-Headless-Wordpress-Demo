@@ -1,7 +1,6 @@
 import Image from 'next/image'
 
 import { Button } from '@/components/Button'
-import { Container } from '@/components/Container'
 import backgroundImage from '@/images/background-call-to-action.jpg'
 import { gql } from '@apollo/client'
 
@@ -19,7 +18,7 @@ export function CallToAction(props) {
         height={1244}
         unoptimized
       />
-      <Container className="relative">
+      <div className="relative container">
         <div className="mx-auto max-w-lg text-center">
           <h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl">
             {props?.title}
@@ -31,7 +30,7 @@ export function CallToAction(props) {
             {props?.button?.title}
           </Button>
         </div>
-      </Container>
+      </div>
     </section>
   )
 }

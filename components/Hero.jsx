@@ -2,11 +2,10 @@ import Image from 'next/image'
 import { gql } from "@apollo/client";
 
 import { Button } from '@/components/Button'
-import { Container } from '@/components/Container'
 
 export function Hero(hero) {
   return (
-    <Container className="pb-16 pt-20 text-center lg:pt-32">
+    <div className="pb-16 pt-20 text-center lg:pt-32 container">
       <h1 className="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl">
         <span className="relative whitespace-nowrap text-blue-600">
           <svg
@@ -62,7 +61,7 @@ export function Hero(hero) {
          
         </ul>
       </div>
-    </Container>
+    </div>
   )
 }
 Hero.displayName = "PageBuilderDynamicBlocksHeroLayout";

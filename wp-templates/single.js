@@ -1,27 +1,23 @@
-import { gql } from '@apollo/client';
-import { useFaustQuery } from '@faustwp/core';
+import { gql } from '@apollo/client'
+import { useFaustQuery } from '@faustwp/core'
+import EntryHeader from '../components/EntryHeader'
 import {
-  Container,
-  ContentWrapper,
-  EntryHeader,
-  FeaturedImage,
   Footer,
   Header,
   Main,
   SEO,
-} from '../components';
-import * as MENUS from '../constants/menus';
-import { BlogInfoFragment } from '../fragments/GeneralSettings';
-
+} from '../components'
+import FeaturedImage from '@/components/FeaturedImage'
+import * as MENUS from '../constants/menus'
+import { BlogInfoFragment } from '../fragments/GeneralSettings'
 const GET_LAYOUT_QUERY = gql`
   ${BlogInfoFragment}
-  query GetLayout
-   {
+  query GetLayout {
     generalSettings {
       ...BlogInfoFragment
     }
   }
-`;
+`
 
 const GET_POST_QUERY = gql`
   ${FeaturedImage.fragments.entry}
@@ -54,32 +50,31 @@ const GET_POST_QUERY = gql`
       ...FeaturedImageFragment
     }
   }
-`;
+`
 
 export default function Component(props) {
   // Loading state for previews
   if (props.loading) {
-    return <>Loading...</>;
+    return <>Loading...</>
   }
 
-  const { post } = useFaustQuery(GET_POST_QUERY);
-    const { seoTitle, description, canonicalUrl, socialGraphImage } =
-    post?.pageSettings ?? {};
- 
-  const { title, content, featuredImage, date, author } = post ?? {};
+  const { post } = useFaustQuery(GET_POST_QUERY)
+  const { seoTitle, description, canonicalUrl, socialGraphImage } =
+    post?.pageSettings ?? {}
+
+  const { title, content, featuredImage, date, author } = post ?? {}
 
   return (
     <>
-       <SEO
+      <SEO
         title={seoTitle || title}
         description={description}
         imageUrl={
-          featuredImage?.node?.sourceUrl || socialGraphImage?.node?.sourceUrl 
+          featuredImage?.node?.sourceUrl || socialGraphImage?.node?.sourceUrl
         }
         url={canonicalUrl || null}
       />
-      <Header
-      />
+      <Header />
       <Main>
         <>
           <EntryHeader
@@ -88,14 +83,16 @@ export default function Component(props) {
             date={date}
             author={author?.node?.name}
           />
-          <Container>
-            <ContentWrapper content={content} />
-          </Container>
+          <div className="container">
+            <article className={'component'}>
+              <div className='mx-auto max-w-[800px]' dangerouslySetInnerHTML={{ __html: content ?? '' }} />
+            </article>
+          </div>
         </>
       </Main>
       <Footer />
     </>
-  );
+  )
 }
 
 Component.queries = [
@@ -113,4 +110,4 @@ Component.queries = [
       asPreview: ctx?.asPreview,
     }),
   },
-];
+]

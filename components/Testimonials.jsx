@@ -1,6 +1,5 @@
 import Image from 'next/image'
 
-import { Container } from '@/components/Container'
 import avatarImage1 from '@/images/avatars/avatar-1.png'
 import avatarImage2 from '@/images/avatars/avatar-2.png'
 import avatarImage3 from '@/images/avatars/avatar-3.png'
@@ -85,7 +84,7 @@ export function Testimonials() {
       aria-label="What our customers are saying"
       className="bg-slate-50 py-20 sm:py-32"
     >
-      <Container>
+      <div className='container'>
         <div className="mx-auto max-w-2xl md:text-center">
           <h2 className="font-display text-3xl tracking-tight text-slate-900 sm:text-4xl">
             Loved by businesses worldwide.
@@ -138,7 +137,7 @@ export function Testimonials() {
             </li>
           ))}
         </ul>
-      </Container>
+      </div>
     </section>
   )
 }

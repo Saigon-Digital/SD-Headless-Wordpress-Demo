@@ -1,13 +1,12 @@
 import Link from 'next/link'
 
-import { Container } from '@/components/Container'
 import { Logo } from '@/components/Logo'
 import { NavLink } from '@/components/NavLink'
 
 export function Footer() {
   return (
     <footer className="bg-slate-50">
-      <Container>
+      <div className='container'>
         <div className="py-16">
           <div className="flex justify-center text-center">
             <Logo className="mx-auto h-10 " />
@@ -52,7 +51,7 @@ export function Footer() {
             rights reserved.
           </p>
         </div>
-      </Container>
+      </div>
     </footer>
   )
 }

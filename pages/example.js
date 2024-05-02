@@ -6,7 +6,6 @@ import {
   Hero,
   Footer,
   Main,
-  Container,
   NavigationMenu,
   SEO,
 } from '../components';
@@ -31,13 +30,13 @@ export default function Page(props) {
         menuItems={primaryMenu}
       />
       <Main>
-        <Container>
+        <div className='container'>
           <Hero title={title} />
           <div className="text-center">
             <p>This page is utilizing the Next.js File based routes.</p>
             <code>pages/example.js</code>
           </div>
-        </Container>
+        </div>
       </Main>
       <Footer title={siteTitle} menuItems={footerMenu} />
     </>

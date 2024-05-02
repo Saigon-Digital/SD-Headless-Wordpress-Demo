@@ -6,7 +6,6 @@ import { Popover, Transition } from '@headlessui/react'
 import clsx from 'clsx'
 
 import { Button } from '@/components/Button'
-import { Container } from '@/components/Container'
 import { Logo } from '@/components/Logo'
 import { NavLink } from '@/components/NavLink'
 
@@ -94,7 +93,7 @@ function MobileNavigation() {
 export function Header() {
   return (
     <header className="py-10">
-      <Container>
+      <div className='container mx-auto'>
         <nav className="relative z-50 flex justify-between">
           <div className="flex items-center md:gap-x-12">
             <Link href="/" aria-label="Home">
@@ -120,7 +119,7 @@ export function Header() {
             </div>
           </div>
         </nav>
-      </Container>
+      </div>
     </header>
   )
 }

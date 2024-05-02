@@ -4,7 +4,6 @@ import { Tab } from '@headlessui/react'
 import clsx from 'clsx'
 import { gql } from "@apollo/client";
 
-import { Container } from '@/components/Container'
 import backgroundImage from '@/images/background-features.jpg'
 import screenshotExpenses from '@/images/screenshots/expenses.png'
 import screenshotPayroll from '@/images/screenshots/payroll.png'
@@ -70,7 +69,7 @@ export function PrimaryFeatures(props) {
         height={1636}
         unoptimized
       />
-      <Container className="relative">
+      <div className="relative container">
         <div className="max-w-2xl md:mx-auto md:text-center xl:max-w-none">
           <h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl md:text-5xl">
             {props?.title}
@@ -149,7 +148,7 @@ export function PrimaryFeatures(props) {
             </>
           )}
         </Tab.Group>
-      </Container>
+      </div>
     </section>
   )
 }
