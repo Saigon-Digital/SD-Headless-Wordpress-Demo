@@ -9,7 +9,7 @@ export function TextBlock(props) {
       className="relative overflow-hidden py-32"
       
     >
-        <div className='z-10 relative'>{props?.content && parse(props?.content)}</div>
+        <div className='z-10 relative [&>p>img]:mx-auto [&>p>img]:mt-5'>{props?.content && parse(props?.content)}</div>
         <Image
         className="absolute left-1/2 top-1/2 max-w-none -translate-x-1/2 -translate-y-1/2 "
         src={backgroundImage}
