@@ -6,9 +6,10 @@ import { Footer } from '@/components/Footer'
 import SEO from '@/components/SEO'
 import Main from '@/components/Main'
 import FeaturedImage from '@/components/FeaturedImage'
+import Head from 'next/head'
+import dayjs from 'dayjs'
 
 const GET_LAYOUT_QUERY = gql`
-  
   query GetLayout {
     generalSettings {
       title
@@ -62,6 +63,18 @@ export default function Component(props) {
 
   const { title, content, featuredImage, date, author } = post ?? {}
 
+  const markupSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: title,
+    author: {
+      '@type': 'Person',
+      name: author?.node?.name,
+    },
+    datePublished: date,
+    image: featuredImage?.node?.sourceUrl || socialGraphImage?.node?.sourceUrl,
+  }
+
   return (
     <>
       <SEO
@@ -73,6 +86,11 @@ export default function Component(props) {
         url={canonicalUrl || null}
       />
       <Header />
+      <Head>
+        <script type={'application/ld+json'} id={`script`}>
+          {JSON.stringify(markupSchema)}
+        </script>
+      </Head>
       <Main>
         <>
           <EntryHeader
@@ -83,7 +101,10 @@ export default function Component(props) {
           />
           <div className="container">
             <article className={'component'}>
-              <div className='mx-auto max-w-[800px]' dangerouslySetInnerHTML={{ __html: content ?? '' }} />
+              <div
+                className="mx-auto max-w-[800px]"
+                dangerouslySetInnerHTML={{ __html: content ?? '' }}
+              />
             </article>
           </div>
         </>
@@ -97,8 +118,8 @@ Component.queries = [
   {
     query: GET_LAYOUT_QUERY,
     variables: (seedNode, ctx) => ({
-      headerLocation: "PRIMARY",
-      footerLocation: "FOOTER",
+      headerLocation: 'PRIMARY',
+      footerLocation: 'FOOTER',
     }),
   },
   {

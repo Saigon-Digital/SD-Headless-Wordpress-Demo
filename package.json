@@ -24,6 +24,7 @@
     "autoprefixer": "^10.4.12",
     "classnames": "^2.3.1",
     "clsx": "^2.1.0",
+    "dayjs": "^1.11.11",
     "graphql": "^16.6.0",
     "html-react-parser": "^5.1.10",
     "next": "^14.0.4",
