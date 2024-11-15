@@ -11,3 +11,4 @@ export default setConfig({
   possibleTypes,
   usePersistedQueries: true,
 });
+// trigger build
