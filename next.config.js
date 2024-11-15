@@ -13,3 +13,4 @@ module.exports = withFaust({
     domains: [getWpHostname()],
   },
 });
+// trigger build
