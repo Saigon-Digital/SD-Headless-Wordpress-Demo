@@ -5,7 +5,11 @@ export default function Page(props) {
 }
 
 export function getStaticProps(ctx) {
-  return getWordPressProps({ ctx });
+  const wordPressProps = getWordPressProps({ ctx });
+  return {
+    ...wordPressProps,
+    revalidate: 30, 
+  };
 }
 
 export async function getStaticPaths() {
