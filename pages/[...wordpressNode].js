@@ -5,7 +5,7 @@ export default function Page(props) {
 }
 
 export function getStaticProps(ctx) {
-  const wordPressProps = getWordPressProps({ ctx, revalidate: 20 })
+  return getWordPressProps({ ctx, revalidate: 20 })
 
   console.log('🚀 ~ getStaticProps ~ wordPressProps:', wordPressProps)
   return {
